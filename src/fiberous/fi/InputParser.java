@@ -13,6 +13,10 @@ public class InputParser {
 	
 	private ArrayList<Command> commands;
 
+	/**
+	 * 
+	 * @param commandListString Sets what input should display the list of currently available commands.
+	 */
 	public InputParser() {
 		commands = new ArrayList<>();
 	}
@@ -31,6 +35,14 @@ public class InputParser {
 	 */
 	public void setCommands(ArrayList<Command> commands) {
 		this.commands = commands;
+	}
+	
+	/**
+	 * Returns an ArrayList containing all of the currently configured commands.
+	 * @return
+	 */
+	public ArrayList<Command> getCommands() {
+		return commands;
 	}
 	
 	/**
@@ -61,5 +73,13 @@ public class InputParser {
 		
 		//Returns false to allow for extensive error handling.
 		return false;
+	}
+	
+	/**
+	 * Returns the number of currenly configured commands.
+	 * @return
+	 */
+	public int numOfCommands() {
+		return commands.size();
 	}
 }

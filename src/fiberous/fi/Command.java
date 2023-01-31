@@ -17,6 +17,7 @@ public class Command {
 	
 	public String commandString;
 	public ArrayList<String> arguments;
+	public String commandDescription;
 	public boolean acceptsArguments;
 	
 	/**
@@ -29,6 +30,7 @@ public class Command {
 		this.acceptsArguments = acceptsArguments;
 		
 		arguments = new ArrayList<>();
+		commandDescription = "Please fill out the description!";
 	}
 	
 	/**
@@ -45,7 +47,11 @@ public class Command {
 	public boolean isCommand(String cString) {
 		//If we don't accept arguments, just compare the two strings
 		if(!acceptsArguments) {
-			return this.commandString.matches(cString);
+			//Using compareTo to avoid some weird regex things
+			if(this.commandString.compareTo(cString) == 0)
+				return true;
+			else
+				return false;
 		} else {
 			
 			//Cleanup from the last time the command was called.
@@ -57,7 +63,7 @@ public class Command {
 			
 			String compareString = cString.substring(0, commandString.length());
 			
-			if(compareString.matches(commandString)) {
+			if(compareString.compareTo(commandString) == 0) {
 				String argumentsString = cString.substring(commandString.length());
 				Scanner scanner = new Scanner(argumentsString);
 				scanner.useDelimiter(" ");
