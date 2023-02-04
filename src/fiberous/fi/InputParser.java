@@ -1,5 +1,6 @@
 package fiberous.fi;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -12,13 +13,17 @@ import java.util.Scanner;
 public class InputParser {
 	
 	private ArrayList<Command> commands;
+	private String listCommandsString;
+	private OutputStream oStream;
 
 	/**
 	 * 
-	 * @param commandListString Sets what input should display the list of currently available commands.
+	 * @param listCommandsString Sets what input should display the list of available commands.
 	 */
-	public InputParser() {
+	public InputParser(OutputStream os, String listCommandsString) {
 		commands = new ArrayList<>();
+		oStream = os;
+		this.listCommandsString = listCommandsString;
 	}
 	
 	/**
@@ -60,10 +65,14 @@ public class InputParser {
 	 */
 	public boolean doCommand(String commandString) {
 		
-		Command command;
+		//Check for the string that should list the commands
+		if(commandString.compareTo(listCommandsString) == 0) {
+			listCommands();
+			return true;
+		}
 		
 		for(int i = 0; i < commands.size(); i++) {
-			command = commands.get(i);
+			Command command = commands.get(i);
 			
 			if(command.isCommand(commandString)) {
 				command.execute();
@@ -81,5 +90,13 @@ public class InputParser {
 	 */
 	public int numOfCommands() {
 		return commands.size();
+	}
+	
+	private void listCommands() {
+		
+		oStream.print("\nAvailable Commands:\n");
+		for(int i = 0; i < numOfCommands(); i++) {
+			oStream.println(getCommands().get(i).commandString + "\t" + getCommands().get(i).commandDescription);
+		}
 	}
 }

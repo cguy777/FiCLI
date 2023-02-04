@@ -7,7 +7,6 @@ import java.util.Scanner;
  * The base class which should be extended by all other commands.
  * You must override the {@link execute()} method to perform whatever action that is needed.
  * You must define the commandString (what input is needed to execute the command).
- * You must also define the acceptsArguments boolean (whether it should look for information beyond the command itself.
  * Once a new command class has been created, it must be instantiated and added to the {@link InputParser}.
  * Whenever input is passed to the InputParser, if it matches the class you created, the execute method will run.
  * @author noahm
@@ -28,7 +27,7 @@ public class Command {
 		this.commandString = commandString;
 		
 		arguments = new ArrayList<>();
-		commandDescription = "Please fill out the description!";
+		commandDescription = "";
 	}
 	
 	/**
