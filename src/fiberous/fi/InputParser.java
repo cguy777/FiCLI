@@ -16,14 +16,35 @@ public class InputParser {
 	private String listCommandsString;
 	private OutputStream oStream;
 
+
 	/**
-	 * 
-	 * @param listCommandsString Sets what input should display the list of available commands.
+	 * Creates a new InputParser with a configurable {@link OutputStream}.
+	 * @param os The {@link OutputStream} object that this parser will use to directly output data.
+	 * @param listCommandsString What input string should show all of the commands that have been configured.
 	 */
 	public InputParser(OutputStream os, String listCommandsString) {
 		commands = new ArrayList<>();
 		oStream = os;
 		this.listCommandsString = listCommandsString;
+	}
+	
+	/**
+	 * Creates a new InputParser using the default {@link SystemOutput} {@link OutputStream}.
+	 * @param listCommandsString What input string should show all of the commands that have been configured.
+	 */
+	public InputParser(String listCommandsString) {
+		commands = new ArrayList<>();
+		oStream = new SystemOutput();
+		this.listCommandsString = listCommandsString;
+	}
+	
+	/**
+	 * Creates a new InputParser using the default {@link SystemOutput} {@link OutputStream} and a default listCommndsString of '?'.
+	 */
+	public InputParser() {
+		commands = new ArrayList<>();
+		oStream = new SystemOutput();
+		listCommandsString = "?";
 	}
 	
 	/**
@@ -91,6 +112,8 @@ public class InputParser {
 	public int numOfCommands() {
 		return commands.size();
 	}
+	
+	
 	
 	private void listCommands() {
 		
