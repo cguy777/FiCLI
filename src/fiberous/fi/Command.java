@@ -18,16 +18,14 @@ public class Command {
 	public String commandString;
 	public ArrayList<String> arguments;
 	public String commandDescription;
-	public boolean acceptsArguments;
 	
 	/**
 	 * You must determine what string this command will respond to (the commandString parameter) and whether this command accepts arguments or not (the acceptsArguments parameter).
 	 * @param commandString
 	 * @param acceptsArguments
 	 */
-	public Command(String commandString, boolean acceptsArguments) {
+	public Command(String commandString) {
 		this.commandString = commandString;
-		this.acceptsArguments = acceptsArguments;
 		
 		arguments = new ArrayList<>();
 		commandDescription = "Please fill out the description!";
@@ -45,39 +43,33 @@ public class Command {
 	 * @return
 	 */
 	public boolean isCommand(String cString) {
-		//If we don't accept arguments, just compare the two strings
-		if(!acceptsArguments) {
-			//Using compareTo to avoid some weird regex things
-			if(this.commandString.compareTo(cString) == 0)
-				return true;
-			else
-				return false;
-		} else {
 			
-			//Cleanup from the last time the command was called.
-			arguments.clear();
+		//Cleanup from the last time the command was called.
+		arguments.clear();
 			
-			//Check for obviously different commands and proceed accordingly
-			if(cString.length() < commandString.length())
-				return false;
+		//Check for obviously different commands and proceed accordingly
+		if(cString.length() < commandString.length())
+			return false;
 			
-			String compareString = cString.substring(0, commandString.length());
-			
-			if(compareString.compareTo(commandString) == 0) {
-				String argumentsString = cString.substring(commandString.length());
-				Scanner scanner = new Scanner(argumentsString);
-				scanner.useDelimiter(" ");
+		String compareString = cString.substring(0, commandString.length());
+		
+		//Compare the command string and scan for any arguments
+		if(compareString.compareTo(commandString) == 0) {
+			String argumentsString = cString.substring(commandString.length());
+			Scanner scanner = new Scanner(argumentsString);
+			scanner.useDelimiter(" ");
 				
-				while(true) {
-					if(scanner.hasNext())
-						arguments.add(scanner.next());
-					else
-						break;
-				}
-				
-				return true;
-			} else
-				return false;
-		}
+			while(true) {
+				if(scanner.hasNext())
+					arguments.add(scanner.next());
+				else
+					break;
+			}
+			
+			scanner.close();
+			
+			return true;
+		} else
+			return false;
 	}
 }

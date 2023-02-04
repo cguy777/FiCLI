@@ -5,7 +5,7 @@ import fiberous.fi.Command;
 public class DisplayCommand extends Command {
 	
 	public DisplayCommand(String commandString, boolean acceptsArguments) {
-		super(commandString, acceptsArguments);
+		super(commandString);
 	}
 
 	//Put in here whatever you want to happen
