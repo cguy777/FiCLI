@@ -1,13 +1,12 @@
 package fiberous.fi;
 
-import fiberous.fi.OutputStream;
-
 /**
- * Basic {@link OutputStream} for System.out.print() and System.out.println()
+ * Basic {@link FiOutputStream} for System.out.print and System.out.println.
+ * This is the default FiOutputStream for the {@link FiInputParser}.
  * @author noahm
  *
  */
-public class SystemOutput implements OutputStream {
+public class FiSystemOutput implements FiOutputStream {
 
 	/**
 	 * Wrapper for System.out.print()
