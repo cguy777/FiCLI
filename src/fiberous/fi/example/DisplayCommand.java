@@ -1,18 +1,25 @@
 package fiberous.fi.example;
 
-import fiberous.fi.Command;
+import fiberous.fi.FiCommand;
 
-public class DisplayCommand extends Command {
+/**
+ * This command just displays something...
+ * @author noahm
+ *
+ */
+public class DisplayCommand extends FiCommand {
 	
-	public DisplayCommand(String commandString, boolean acceptsArguments) {
+	public DisplayCommand(String commandString) {
 		super(commandString);
+		
+		commandDescription = "This command displays something";
 	}
 
 	//Put in here whatever you want to happen
 	//We are displaying the record of some object...
 	@Override
 	public void execute() {
-		System.out.println("Displaying a record of some sort");
+		System.out.println("Displaying a record of something...");
 
 	}
 	

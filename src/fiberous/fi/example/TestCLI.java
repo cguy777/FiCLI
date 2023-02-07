@@ -2,8 +2,9 @@ package fiberous.fi.example;
 
 import java.util.Scanner;
 
-import fiberous.fi.InputParser;
-import fiberous.fi.SystemOutput;
+import fiberous.fi.FiInputParser;
+import fiberous.fi.FiParserState;
+import fiberous.fi.FiSystemOutput;
 
 /*
  * Quick example of how this works...
@@ -12,17 +13,26 @@ public class TestCLI {
 	
 	public static void main(String[]args) {
 		Scanner console = new Scanner(System.in);
-		InputParser parser = new InputParser(new SystemOutput(), "?");
+		FiInputParser parser = new FiInputParser("?");
 		
 		//The parameters for ExitCommand are defined within the class constructor
 		//But the command syntax is hidden, so this is not my preference...
-		parser.addCommand(new DisplayCommand("get record", false));
-		parser.addCommand(new ExitCommand());
-		parser.addCommand(new ArgTestCommand("args", true));
+		parser.addCommand(new ArgTestCommand("args"));
+		parser.addCommand(new DisplayCommand("get record"));
+		parser.addCommand(new NestedCommands("menu", console));
 		
 		while(true) {
-			if(!parser.doCommand(console.nextLine()))
+			System.out.print("> ");
+			
+			FiParserState state = parser.doCommand(console.nextLine());
+			
+			//Check for the return states
+			if(state == FiParserState.EXIT)
+				System.exit(0);
+			
+			if(state == FiParserState.INVALID)
 				System.out.println("Invalid command");
+			
 		}
 	}
 }
