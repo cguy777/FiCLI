@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class FiInputParser {
 	
 	private ArrayList<FiCommand> commands;
-	private String listCommandsString;
+	private String listCommandsString = "?";
 	private FiOutputStream oStream;
 	
 	private String exitString = "exit";
@@ -25,6 +25,8 @@ public class FiInputParser {
 	
 	private boolean canUseExit = true;
 	private boolean canUseBack = false;
+	
+	private int spacing = 0;
 
 
 	/**
@@ -54,7 +56,6 @@ public class FiInputParser {
 	public FiInputParser() {
 		commands = new ArrayList<>();
 		oStream = new FiSystemOutput();
-		listCommandsString = "?";
 	}
 	
 	/**
@@ -187,16 +188,18 @@ public class FiInputParser {
 	 * Lists all configured commands, plus additional, special commands, if allowed.
 	 */
 	private void listCommands() {
-		oStream.print("\nAvailable Commands:\n");
+		oStream.println("\nAvailable Commands:");
 		
-		if(canUseExit)
-			oStream.println(exitString + "\t" + exitDescription);
+		if(canUseExit) {
+			oStream.println(exitString + addSpaces(exitString) + exitDescription);
+		}
 		
-		if(canUseBack)
-			oStream.println(backString + "\t" + backDescription);
+		if(canUseBack) {
+			oStream.println(backString + addSpaces(backString) + backDescription);
+		}
 		
 		for(int i = 0; i < numOfCommands(); i++) {
-			oStream.println(getCommands().get(i).commandString + "\t" + getCommands().get(i).commandDescription);
+			oStream.println(getCommands().get(i).commandString + addSpaces(getCommands().get(i).commandString) + getCommands().get(i).commandDescription);
 		}
 	}
 	
@@ -205,6 +208,10 @@ public class FiInputParser {
 	 * @param c
 	 */
 	private void sortAndAddCommand(FiCommand c) {
+		
+		//Set the maximum spacing to make all of the command descriptions line up.
+		if(c.commandString.length() > spacing)
+			spacing = c.commandString.length() + 5;
 		
 		if(commands.size() == 0) {
 			commands.add(c);
@@ -217,5 +224,22 @@ public class FiInputParser {
 				return;
 			}
 		}
+	}
+	
+	/**
+	 * Adds an equalizing amount of spacing so the command descriptions can all line up and look nice.
+	 * @param cs The commandString
+	 * @return
+	 */
+	private String addSpaces(String cs) {
+		String additionalSpace = "";
+		
+		int spaces = spacing - cs.length();
+		
+		for(int i = 0; i < spaces; i++) {
+			additionalSpace += " ";
+		}
+		
+		return additionalSpace;
 	}
 }
