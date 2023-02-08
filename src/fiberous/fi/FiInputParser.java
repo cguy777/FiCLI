@@ -62,7 +62,7 @@ public class FiInputParser {
 	 * @param command
 	 */
 	public void addCommand(FiCommand command) {
-		commands.add(command);
+		sortAndAddCommand(command);
 	}
 	
 	/**
@@ -197,6 +197,25 @@ public class FiInputParser {
 		
 		for(int i = 0; i < numOfCommands(); i++) {
 			oStream.println(getCommands().get(i).commandString + "\t" + getCommands().get(i).commandDescription);
+		}
+	}
+	
+	/**
+	 * Adds commands in alphabetical order.
+	 * @param c
+	 */
+	private void sortAndAddCommand(FiCommand c) {
+		
+		if(commands.size() == 0) {
+			commands.add(c);
+			return;
+		}
+		
+		for(int i = 0; i < commands.size(); i++) {
+			if(c.commandString.compareTo(commands.get(i).commandString) < 0) {
+				commands.add(i, c);
+				return;
+			}
 		}
 	}
 }
