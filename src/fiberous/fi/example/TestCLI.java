@@ -15,11 +15,11 @@ public class TestCLI {
 		Scanner console = new Scanner(System.in);
 		FiInputParser parser = new FiInputParser("?");
 		
-		//The parameters for ExitCommand are defined within the class constructor
-		//But the command syntax is hidden, so this is not my preference...
+		//The commands will be added and sorted in alphabetical order
+		parser.addCommand(new NestedCommands("menu", console));
 		parser.addCommand(new ArgTestCommand("args"));
 		parser.addCommand(new DisplayCommand("get record"));
-		parser.addCommand(new NestedCommands("menu", console));
+		
 		
 		while(true) {
 			System.out.print("> ");
