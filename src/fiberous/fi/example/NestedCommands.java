@@ -26,7 +26,7 @@ public class NestedCommands extends FiCommand {
 	public void execute() {
 		FiInputParser nestedParser = new FiInputParser("?");
 		
-		//Allow the state to be returned.
+		//Allow the EXIT and BACK states to be returned.
 		nestedParser.allowAdditionalStates(true, true);
 		
 		nestedParser.addCommand(new AddCommand("add"));
