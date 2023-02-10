@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import fiberous.fi.FiInputParser;
 import fiberous.fi.FiParserState;
-import fiberous.fi.FiSystemOutput;
+import fiberous.fi.FiSystemOut;
 
 /*
  * Quick example of how this works...
@@ -12,19 +12,22 @@ import fiberous.fi.FiSystemOutput;
 public class TestCLI {
 	
 	public static void main(String[]args) {
-		Scanner console = new Scanner(System.in);
+		//Creating a parser using the defaults of System.in and System.out.
+		//'?' is the default command listing string.
+		//When typed, it will list all of the available commands.
 		FiInputParser parser = new FiInputParser("?");
 		
 		//The commands will be added and sorted in alphabetical order
-		parser.addCommand(new NestedCommands("menu", console));
+		parser.addCommand(new NestedCommands("menu"));
 		parser.addCommand(new ArgTestCommand("args"));
 		parser.addCommand(new DisplayCommand("get record"));
 		
+		//This command is not needed.  This is the default caret.
+		parser.setCaret("> ");
 		
 		while(true) {
-			System.out.print("> ");
-			
-			FiParserState state = parser.doCommand(console.nextLine());
+			//Checks prints a caret and waits for input.
+			FiParserState state = parser.processCommand();
 			
 			//Check for the return states
 			if(state == FiParserState.EXIT)

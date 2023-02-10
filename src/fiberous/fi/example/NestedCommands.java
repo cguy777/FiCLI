@@ -12,29 +12,28 @@ import fiberous.fi.FiParserState;
  *
  */
 public class NestedCommands extends FiCommand {
-	
-	Scanner console;
 
-	public NestedCommands(String commandString, Scanner s) {
+	public NestedCommands(String commandString) {
 		super(commandString);
-		console = s;
 		
 		commandDescription = "Puts you into a menu with more commands";
 	}
 
 	@Override
 	public void execute() {
-		FiInputParser nestedParser = new FiInputParser("?");
+		//Creating a new parser
+		//'?' is the default command listing string.
+		FiInputParser nestedParser = new FiInputParser();
 		
 		//Allow the EXIT and BACK states to be returned.
+		//If not set, only the EXIT state is allowed by default.
 		nestedParser.allowAdditionalStates(true, true);
 		
 		nestedParser.addCommand(new AddCommand("add"));
+		nestedParser.setCaret("Menu > ");
 		
 		while(true) {
-			System.out.print("Menu > ");
-			
-			FiParserState state = nestedParser.doCommand(console.nextLine());
+			FiParserState state = nestedParser.processCommand();
 			
 			if(state == FiParserState.EXIT)
 				System.exit(0);
