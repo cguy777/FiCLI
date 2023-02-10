@@ -6,7 +6,7 @@ package fiberous.fi;
  * @author noahm
  *
  */
-public class FiSystemOutput implements FiOutputStream {
+public class FiSystemOut implements FiOutputStream {
 
 	/**
 	 * Wrapper for System.out.print()
