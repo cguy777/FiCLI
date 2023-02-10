@@ -16,6 +16,7 @@ public class FiInputParser {
 	private ArrayList<FiCommand> commands;
 	private String listCommandsString = "?";
 	private FiOutputStream oStream;
+	private FiInputStream iStream;
 	
 	private String exitString = "exit";
 	private String backString = "back";
@@ -26,36 +27,41 @@ public class FiInputParser {
 	private boolean canUseExit = true;
 	private boolean canUseBack = false;
 	
-	private int spacing = 0;
-
+	//Set the default spacing to the default length of back and exit
+	private int spacing = 9;
+	
+	private String caret = "> ";
 
 	/**
-	 * Creates a new InputParser with a configurable {@link FiOutputStream}.
+	 * Creates a new InputParser with a configurable {@link FiOutputStream} and {@link FiInputStream}.
 	 * @param os The {@link FiOutputStream} object that this parser will use to directly output data.
 	 * @param listCommandsString What input string should show all of the commands that have been configured.
 	 */
-	public FiInputParser(FiOutputStream os, String listCommandsString) {
+	public FiInputParser(FiInputStream is, FiOutputStream os, String listCommandsString) {
 		commands = new ArrayList<>();
+		iStream = is;
 		oStream = os;
 		this.listCommandsString = listCommandsString;
 	}
 	
 	/**
-	 * Creates a new InputParser using the default {@link FiSystemOutput} {@link FiOutputStream}.
+	 * Creates a new InputParser using the default {@link FiSystemOut} {@link FiOutputStream} and the default {@link FiSystemIn} {@link FiInputStream}.
 	 * @param listCommandsString What input string should show all of the commands that have been configured.
 	 */
 	public FiInputParser(String listCommandsString) {
 		commands = new ArrayList<>();
-		oStream = new FiSystemOutput();
+		iStream = new FiSystemIn();
+		oStream = new FiSystemOut();
 		this.listCommandsString = listCommandsString;
 	}
 	
 	/**
-	 * Creates a new InputParser using the default {@link FiSystemOutput} {@link FiOutputStream} and a default listCommndsString of '?'.
+	 * Creates a new InputParser using the default {@link FiSystemOut} {@link FiOutputStream}, the default {@link FiSystemIn} {@link FiInputStream}, and a default listCommndsString of '?'.
 	 */
 	public FiInputParser() {
 		commands = new ArrayList<>();
-		oStream = new FiSystemOutput();
+		iStream = new FiSystemIn();
+		oStream = new FiSystemOut();
 	}
 	
 	/**
@@ -99,6 +105,10 @@ public class FiInputParser {
 	public void setExitString(String s) {
 		exitString = s;
 		canUseExit = true;
+		
+		//Ensure our description spacing is correct
+		if(exitString.length() + 5 > spacing)
+			spacing = exitString.length() + 5;
 	}
 	
 	/**
@@ -112,6 +122,10 @@ public class FiInputParser {
 	public void setBackString(String s) {
 		backString = s;
 		canUseBack = true;
+		
+		//Ensure our description spacing is correct
+		if(backString.length() + 5 > spacing)
+			spacing = backString.length() + 5;
 	}
 	
 	/**
@@ -141,12 +155,41 @@ public class FiInputParser {
 	}
 	
 	/**
+	 * Sets the caret.
+	 * @param c
+	 */
+	public void setCaret(String c) {
+		caret = c;
+	}
+	
+	/**
+	 * Sets the input system.
+	 * @param fis
+	 */
+	public void setInput(FiInputStream fis) {
+		iStream = fis;
+	}
+	
+	/**
+	 * Sets the output system.
+	 * @param fos
+	 */
+	public void setOutput(FiOutputStream fos) {
+		oStream = fos;
+	}
+	
+	/**
+	 * Outputs the caret, indicating that input is requested.
 	 * Checks a string that is passed and attempts to match it against a stored command or other special command.
 	 * If the string is a valid command, it executes the command, and returns true.
 	 * If not, nothing happens and it returns false, which allows you to create your own error handling.
 	 * @return
 	 */
-	public FiParserState doCommand(String commandString) {
+	public FiParserState processCommand() {
+		
+		oStream.print(caret);
+		
+		String commandString = iStream.readLine();
 		
 		//Check for the string that should list the commands
 		if(commandString.compareTo(listCommandsString) == 0) {
@@ -210,13 +253,15 @@ public class FiInputParser {
 	private void sortAndAddCommand(FiCommand c) {
 		
 		//Set the maximum spacing to make all of the command descriptions line up.
-		if(c.commandString.length() > spacing)
+		if(c.commandString.length() + 5 > spacing)
 			spacing = c.commandString.length() + 5;
 		
+		/*
 		if(commands.size() == 0) {
 			commands.add(c);
 			return;
 		}
+		*/
 		
 		for(int i = 0; i < commands.size(); i++) {
 			if(c.commandString.compareTo(commands.get(i).commandString) < 0) {
@@ -224,6 +269,8 @@ public class FiInputParser {
 				return;
 			}
 		}
+		
+		commands.add(c);
 	}
 	
 	/**
