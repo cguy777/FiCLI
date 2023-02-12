@@ -1,7 +1,7 @@
 package fiberous.fi;
 
 /**
- * Implement an object using this interface so the {@link FiInputParser} can directly write to your preferred output.
+ * Implement an object using this interface so the {@link FiCLI} can directly write to your preferred output.
  * @author noahm
  *
  */

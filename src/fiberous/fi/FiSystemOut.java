@@ -2,7 +2,7 @@ package fiberous.fi;
 
 /**
  * Basic {@link FiOutputStream} for System.out.print and System.out.println.
- * This is the default FiOutputStream for the {@link FiInputParser}.
+ * This is the default FiOutputStream for the {@link FiCLI}.
  * @author noahm
  *
  */

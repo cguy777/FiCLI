@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * @author noahm
  *
  */
-public class FiInputParser {
+public class FiCLI {
 	
 	private ArrayList<FiCommand> commands;
 	private String listCommandsString = "?";
@@ -37,7 +37,7 @@ public class FiInputParser {
 	 * @param os The {@link FiOutputStream} object that this parser will use to directly output data.
 	 * @param listCommandsString What input string should show all of the commands that have been configured.
 	 */
-	public FiInputParser(FiInputStream is, FiOutputStream os, String listCommandsString) {
+	public FiCLI(FiInputStream is, FiOutputStream os, String listCommandsString) {
 		commands = new ArrayList<>();
 		iStream = is;
 		oStream = os;
@@ -48,7 +48,7 @@ public class FiInputParser {
 	 * Creates a new InputParser using the default {@link FiSystemOut} {@link FiOutputStream} and the default {@link FiSystemIn} {@link FiInputStream}.
 	 * @param listCommandsString What input string should show all of the commands that have been configured.
 	 */
-	public FiInputParser(String listCommandsString) {
+	public FiCLI(String listCommandsString) {
 		commands = new ArrayList<>();
 		iStream = new FiSystemIn();
 		oStream = new FiSystemOut();
@@ -58,7 +58,7 @@ public class FiInputParser {
 	/**
 	 * Creates a new InputParser using the default {@link FiSystemOut} {@link FiOutputStream}, the default {@link FiSystemIn} {@link FiInputStream}, and a default listCommndsString of '?'.
 	 */
-	public FiInputParser() {
+	public FiCLI() {
 		commands = new ArrayList<>();
 		iStream = new FiSystemIn();
 		oStream = new FiSystemOut();
@@ -96,10 +96,10 @@ public class FiInputParser {
 	}
 	
 	/**
-	 * Determines what String will return {@link FiParserState}.EXIT when doCommand() is called.
-	 * This may back synonymous with the FiParserState.BACK state in certain contexts.
+	 * Determines what String will return {@link FiState}.EXIT when doCommand() is called.
+	 * This may back synonymous with the FiState.BACK state in certain contexts.
 	 * In general, this state is used to determine if the application should exit.
-	 * Using this method also automatically allows FiParserState.EXIT to be returned.
+	 * Using this method also automatically allows FiState.EXIT to be returned.
 	 * @param s
 	 */
 	public void setExitString(String s) {
@@ -112,11 +112,11 @@ public class FiInputParser {
 	}
 	
 	/**
-	 * Determines what String will return {@link FiParserState}.BACK when doCommand() is called.
-	 * This may back synonymous with the FiParserState.EXIT state in certain contexts.
+	 * Determines what String will return {@link FiState}.BACK when doCommand() is called.
+	 * This may back synonymous with the FiState.EXIT state in certain contexts.
 	 * In general, this state is used to determine if this parser should close, and not the application itself.
 	 * It is useful in menu systems where nested parsers are implemented.
-	 * Using this method also automatically allows FiParserState.BACK to be returned.
+	 * Using this method also automatically allows FiState.BACK to be returned.
 	 * @param s
 	 */
 	public void setBackString(String s) {
@@ -129,7 +129,7 @@ public class FiInputParser {
 	}
 	
 	/**
-	 * Determines if the doCommand method can return with FiParserState.EXIT or BACK.
+	 * Determines if the doCommand method can return with FiState.EXIT or BACK.
 	 * @param exit
 	 * @param back
 	 */
@@ -139,7 +139,7 @@ public class FiInputParser {
 	}
 	
 	/**
-	 * Sets the description that the exit command will show (when FiParserState.EXIT is allowed to be returned.)
+	 * Sets the description that the exit command will show (when FiState.EXIT is allowed to be returned.)
 	 * @param desc
 	 */
 	public void setExitDescription(String desc) {
@@ -147,7 +147,7 @@ public class FiInputParser {
 	}
 	
 	/**
-	 * Sets the description that the back command will show (when FiParserState.BACK is allowed to be returned.)
+	 * Sets the description that the back command will show (when FiState.BACK is allowed to be returned.)
 	 * @param desc
 	 */
 	public void setBackDescription(String desc) {
@@ -185,7 +185,7 @@ public class FiInputParser {
 	 * If not, nothing happens and it returns false, which allows you to create your own error handling.
 	 * @return
 	 */
-	public FiParserState processCommand() {
+	public FiState processCommand() {
 		
 		oStream.print(caret);
 		
@@ -194,28 +194,28 @@ public class FiInputParser {
 		//Check for the string that should list the commands
 		if(commandString.compareTo(listCommandsString) == 0) {
 			listCommands();
-			return FiParserState.VALID;
+			return new FiState(FiState.VALID, commandString);
 		}
 		
 		//Check for the string that should generally exit the application, if allowed
 		if(canUseExit && commandString.compareTo(exitString) == 0)
-			return FiParserState.EXIT;
+			return new FiState(FiState.EXIT, commandString);
 		
 		//Check for the string that should generally exit this parser, if allowed
 		if(canUseBack && commandString.compareTo(backString) == 0)
-			return FiParserState.BACK;
+			return new FiState(FiState.BACK, commandString);;
 		
 		for(int i = 0; i < commands.size(); i++) {
 			FiCommand command = commands.get(i);
 			
 			if(command.isCommand(commandString)) {
 				command.execute();
-				return FiParserState.VALID;
+				return new FiState(FiState.VALID, commandString);
 			}
 		}
 		
 		//Returns false to allow for extensive error handling.
-		return FiParserState.INVALID;
+		return new FiState(FiState.INVALID, commandString);
 	}
 	
 	/**

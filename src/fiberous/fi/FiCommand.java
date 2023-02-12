@@ -7,7 +7,7 @@ import java.util.Scanner;
  * The base class which should be extended by all other commands.
  * You must override the {@link execute()} method to perform whatever action that is needed.
  * You must define the commandString (what input is needed to execute the command).
- * Once a new command class has been created, it must be instantiated and added to the {@link FiInputParser}.
+ * Once a new command class has been created, it must be instantiated and added to the {@link FiCLI}.
  * Whenever input is passed to the InputParser, if it matches the command string, the execute method will run.
  * Define the String {@link commandDescription} to either provide help, show a description, or an example on how to use the command.
  * @author noahm
@@ -17,7 +17,7 @@ public abstract class FiCommand {
 	
 	public String commandString;
 	public ArrayList<String> arguments;
-	public String commandDescription;
+	public String commandDescription = "";
 	
 	/**
 	 * You must determine what string this command will respond to (the commandString parameter).
@@ -28,11 +28,10 @@ public abstract class FiCommand {
 		this.commandString = commandString;
 		
 		arguments = new ArrayList<>();
-		commandDescription = "";
 	}
 	
 	/**
-	 * Override this command to perform whatever function is needed.
+	 * Override this method to perform whatever function is needed.
 	 */
 	public abstract void execute();
 	

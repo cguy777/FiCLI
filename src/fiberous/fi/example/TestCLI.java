@@ -1,7 +1,7 @@
 package fiberous.fi.example;
 
-import fiberous.fi.FiInputParser;
-import fiberous.fi.FiParserState;
+import fiberous.fi.FiCLI;
+import fiberous.fi.FiState;
 
 /*
  * Quick example of how this works...
@@ -12,7 +12,7 @@ public class TestCLI {
 		//Creating a parser using the defaults of System.in and System.out.
 		//'?' is the default command listing string.
 		//When typed, it will list all of the available commands.
-		FiInputParser parser = new FiInputParser("?");
+		FiCLI parser = new FiCLI("?");
 		
 		//The commands will be added and sorted in alphabetical order
 		parser.addCommand(new NestedCommands("menu"));
@@ -23,15 +23,17 @@ public class TestCLI {
 		parser.setCaret("> ");
 		
 		while(true) {
-			//Checks prints a caret and waits for input.
-			FiParserState state = parser.processCommand();
+			//Creating an FiState object which can allow us to understand what the system saw.
+			//It also allows us to see what the input was.
+			//the .processCommand() prints the caret and then waits for input.
+			FiState state = parser.processCommand();
 			
 			//Check for the return states
-			if(state == FiParserState.EXIT)
+			if(state.state == FiState.EXIT)
 				System.exit(0);
 			
-			if(state == FiParserState.INVALID)
-				System.out.println("Invalid command");
+			if(state.state == FiState.INVALID)
+				System.out.println('"' + state.input + '"' + " is an invalid command");
 			
 		}
 	}
