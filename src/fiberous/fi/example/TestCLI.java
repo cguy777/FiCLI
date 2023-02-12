@@ -1,10 +1,7 @@
 package fiberous.fi.example;
 
-import java.util.Scanner;
-
 import fiberous.fi.FiInputParser;
 import fiberous.fi.FiParserState;
-import fiberous.fi.FiSystemOut;
 
 /*
  * Quick example of how this works...
@@ -22,7 +19,7 @@ public class TestCLI {
 		parser.addCommand(new ArgTestCommand("args"));
 		parser.addCommand(new DisplayCommand("get record"));
 		
-		//This command is not needed.  This is the default caret.
+		//This command is not needed as this is the default caret.
 		parser.setCaret("> ");
 		
 		while(true) {

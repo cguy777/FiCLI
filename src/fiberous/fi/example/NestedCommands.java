@@ -1,7 +1,5 @@
 package fiberous.fi.example;
 
-import java.util.Scanner;
-
 import fiberous.fi.FiCommand;
 import fiberous.fi.FiInputParser;
 import fiberous.fi.FiParserState;
