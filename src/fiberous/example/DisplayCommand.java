@@ -1,4 +1,4 @@
-package fiberous.fi.example;
+package fiberous.example;
 
 import fiberous.fi.FiCommand;
 
@@ -7,7 +7,7 @@ import fiberous.fi.FiCommand;
  * @author noahm
  *
  */
-class DisplayCommand extends FiCommand {
+public class DisplayCommand extends FiCommand {
 	
 	public DisplayCommand(String commandString) {
 		super(commandString);

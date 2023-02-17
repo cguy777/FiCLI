@@ -1,4 +1,4 @@
-package fiberous.fi.example;
+package fiberous.example;
 
 import fiberous.fi.FiCLI;
 import fiberous.fi.FiState;
@@ -6,7 +6,7 @@ import fiberous.fi.FiState;
 /*
  * Quick example of how this works...
  */
-class ExampleCLI {
+public class ExampleCLI {
 	
 	public static void main(String[]args) {
 		//Creating a parser using the defaults of System.in and System.out.

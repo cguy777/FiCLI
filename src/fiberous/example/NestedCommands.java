@@ -1,4 +1,4 @@
-package fiberous.fi.example;
+package fiberous.example;
 
 import fiberous.fi.FiCommand;
 import fiberous.fi.FiCLI;
@@ -9,7 +9,7 @@ import fiberous.fi.FiState;
  * @author noahm
  *
  */
-class NestedCommands extends FiCommand {
+public class NestedCommands extends FiCommand {
 
 	public NestedCommands(String commandString) {
 		super(commandString);
