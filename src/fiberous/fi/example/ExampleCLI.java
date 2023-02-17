@@ -6,7 +6,7 @@ import fiberous.fi.FiState;
 /*
  * Quick example of how this works...
  */
-public class TestCLI {
+class ExampleCLI {
 	
 	public static void main(String[]args) {
 		//Creating a parser using the defaults of System.in and System.out.

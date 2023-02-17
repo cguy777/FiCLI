@@ -7,7 +7,7 @@ import fiberous.fi.FiCommand;
  * @author noahm
  *
  */
-public class ArgTestCommand extends FiCommand {
+class ArgTestCommand extends FiCommand {
 
 	public ArgTestCommand(String commandString) {
 		super(commandString);

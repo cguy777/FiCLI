@@ -9,7 +9,7 @@ import fiberous.fi.FiState;
  * @author noahm
  *
  */
-public class NestedCommands extends FiCommand {
+class NestedCommands extends FiCommand {
 
 	public NestedCommands(String commandString) {
 		super(commandString);
