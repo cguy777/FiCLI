@@ -194,6 +194,14 @@ public class FiCLI {
 	}
 	
 	/**
+	 * Returns the currently configured caret.
+	 * @return
+	 */
+	public String getCaret() {
+		return caret;
+	}
+	
+	/**
 	 * Sets the input system.
 	 * @param fis
 	 */
@@ -273,6 +281,13 @@ public class FiCLI {
 		}
 		
 		for(int i = 0; i < numOfCommands(); i++) {
+			
+			//Check if the command should be visible or not.
+			//If a command isn't visible, it won't be listed,
+			//but it can still be executed.
+			if(!getCommands().get(i).isVisible)
+				continue;
+			
 			oStream.println(getCommands().get(i).commandString + addSpaces(getCommands().get(i).commandString) + getCommands().get(i).commandDescription);
 		}
 	}

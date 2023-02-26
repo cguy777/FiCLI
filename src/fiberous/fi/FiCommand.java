@@ -49,6 +49,8 @@ public abstract class FiCommand {
 	public String commandString;
 	public ArrayList<String> arguments;
 	public String commandDescription = "";
+	//Change this if you don't want a command to be listed.
+	public boolean isVisible = true;
 	
 	/**
 	 * You must determine what string this command will respond to (the commandString parameter).

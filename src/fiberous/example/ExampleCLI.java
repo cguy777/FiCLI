@@ -18,6 +18,7 @@ public class ExampleCLI {
 		parser.addCommand(new NestedCommands("menu"));
 		parser.addCommand(new ArgTestCommand("args"));
 		parser.addCommand(new DisplayCommand("get record"));
+		parser.addCommand(new HiddenCommand("hidden command"));
 		
 		//This command is not needed as this is the default caret.
 		parser.setCaret("> ");
