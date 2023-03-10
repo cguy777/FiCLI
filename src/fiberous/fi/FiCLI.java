@@ -160,7 +160,7 @@ public class FiCLI {
 	}
 	
 	/**
-	 * Determines if the doCommand method can return with FiState.EXIT or BACK.
+	 * Determines if the processCommand method can return with FiState.EXIT or BACK.
 	 * @param exit
 	 * @param back
 	 */
