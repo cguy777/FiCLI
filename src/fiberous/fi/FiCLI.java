@@ -242,7 +242,7 @@ public class FiCLI {
 		
 		//Check for the string that should generally exit this parser, if allowed
 		if(canUseBack && commandString.compareTo(backString) == 0)
-			return new FiState(FiState.BACK, commandString);;
+			return new FiState(FiState.BACK, commandString);
 		
 		for(int i = 0; i < commands.size(); i++) {
 			FiCommand command = commands.get(i);
