@@ -144,9 +144,9 @@ public class FiCLI {
 	
 	/**
 	 * Determines what String will return {@link FiState}.BACK when doCommand() is called.
-	 * This may back synonymous with the FiState.EXIT state in certain contexts.
+	 * This may back synonymous with the FiState.EXIT state in certain contexts and configurations.
 	 * In general, this state is used to determine if this parser should close, and not the application itself.
-	 * It is useful in menu systems where nested parsers are implemented.
+	 * It is useful in menu systems where nested parsers are implemented, and you still want to allow exiting from the application, regardless of where in the CLI the user is.
 	 * Using this method also automatically allows FiState.BACK to be returned.
 	 * @param s
 	 */
