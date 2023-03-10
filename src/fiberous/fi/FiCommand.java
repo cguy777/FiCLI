@@ -55,7 +55,6 @@ public abstract class FiCommand {
 	/**
 	 * You must determine what string this command will respond to (the commandString parameter).
 	 * @param commandString
-	 * @param acceptsArguments
 	 */
 	public FiCommand(String commandString) {
 		this.commandString = commandString;
