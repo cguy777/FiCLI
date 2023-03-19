@@ -62,7 +62,6 @@ public class FiConsoleIO implements FiInputStream, FiOutputStream {
 	@Override
 	public void print(String s) {
 		System.out.print(s);
-
 	}
 
 	/**
@@ -71,7 +70,6 @@ public class FiConsoleIO implements FiInputStream, FiOutputStream {
 	@Override
 	public void println(String s) {
 		System.out.println(s);
-
 	}
 
 }
