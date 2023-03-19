@@ -47,9 +47,21 @@ import java.util.Scanner;
 public abstract class FiCommand {
 	
 	public String commandString;
+	
+	/**
+	 * A list of arguments derived from the input.
+	 */
 	public ArrayList<String> arguments;
+	
+	/**
+	 * The description of the command.
+	 * Shown when all of the commands are listed.
+	 */
 	public String commandDescription = "";
-	//Change this if you don't want a command to be listed.
+
+	/**
+	 * Change this to false if you don't want a command to be listed.
+	 */
 	public boolean isVisible = true;
 	
 	/**

@@ -132,7 +132,7 @@ public class FiCLI {
 	
 	/**
 	 * Determines what String will return {@link FiState}.EXIT when doCommand() is called.
-	 * This may back synonymous with the FiState.BACK state in certain contexts.
+	 * This may be synonymous with the FiState.BACK state in certain contexts.
 	 * In general, this state is used to determine if the application should exit.
 	 * Using this method also automatically allows FiState.EXIT to be returned.
 	 * @param s
@@ -148,7 +148,7 @@ public class FiCLI {
 	
 	/**
 	 * Determines what String will return {@link FiState}.BACK when doCommand() is called.
-	 * This may back synonymous with the FiState.EXIT state in certain contexts and configurations.
+	 * This may be synonymous with the FiState.EXIT state in certain contexts and configurations.
 	 * In general, this state is used to determine if this parser should close, and not the application itself.
 	 * It is useful in menu systems where nested parsers are implemented, and you still want to allow exiting from the application, regardless of where in the CLI the user is.
 	 * Using this method also automatically allows FiState.BACK to be returned.
@@ -222,7 +222,7 @@ public class FiCLI {
 	}
 	
 	/**
-	 * Outputs the caret, indicating that input is requested.
+	 * Outputs the caret, indicating that input is requested, and then waits for input and reacts accordingly.
 	 * Checks a string that is passed and attempts to match it against a stored command or other special command.
 	 * If the string is a valid command, it executes the command, and returns true.
 	 * If not, nothing happens and it returns false, which allows you to create your own error handling.
