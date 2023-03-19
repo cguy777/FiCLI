@@ -76,7 +76,7 @@ public class FiCLI {
 	}
 	
 	/**
-	 * Creates a new InputParser using the default {@link FiSystemOut} {@link FiOutputStream} and the default {@link FiSystemIn} {@link FiInputStream}.
+	 * Creates a new InputParser using the default {@link FiConsoleIO}.
 	 * @param listCommandsString What input string should show all of the commands that have been configured.
 	 */
 	public FiCLI(String listCommandsString) {
@@ -90,7 +90,7 @@ public class FiCLI {
 	}
 	
 	/**
-	 * Creates a new InputParser using the default {@link FiSystemOut} {@link FiOutputStream}, the default {@link FiSystemIn} {@link FiInputStream}, and a default listCommndsString of '?'.
+	 * Creates a new InputParser using the default {@link FiConsoleIO}, and a default listCommndsString of '?'.
 	 */
 	public FiCLI() {
 		commands = new ArrayList<>();
