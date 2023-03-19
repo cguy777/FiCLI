@@ -81,8 +81,11 @@ public class FiCLI {
 	 */
 	public FiCLI(String listCommandsString) {
 		commands = new ArrayList<>();
-		iStream = new FiSystemIn();
-		oStream = new FiSystemOut();
+		
+		FiConsoleIO consoleIO = new FiConsoleIO();
+		iStream = consoleIO;
+		oStream = consoleIO;
+		
 		this.listCommandsString = listCommandsString;
 	}
 	
@@ -91,8 +94,9 @@ public class FiCLI {
 	 */
 	public FiCLI() {
 		commands = new ArrayList<>();
-		iStream = new FiSystemIn();
-		oStream = new FiSystemOut();
+		FiConsoleIO consoleIO = new FiConsoleIO();
+		iStream = consoleIO;
+		oStream = consoleIO;
 	}
 	
 	/**

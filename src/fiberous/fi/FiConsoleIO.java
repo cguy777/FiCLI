@@ -34,17 +34,17 @@ package fiberous.fi;
 import java.util.Scanner;
 
 /**
- * A wrapper class for System.in using a {@link Scanner}.
- * Implements {@link FiInputStream}.
- * This is the default input stream.
+ * A wrapper class for System.in using a {@link Scanner} and System.out.
+ * Implements {@link FiInputStream} and {@link FiOutputStream}.
+ * This is the default IO stream system.
  * @author noahm
  *
  */
-public class FiSystemIn implements FiInputStream {
+public class FiConsoleIO implements FiInputStream, FiOutputStream {
 	
 	Scanner console;
 	
-	public FiSystemIn() {
+	public FiConsoleIO() {
 		console = new Scanner(System.in);
 	}
 	
@@ -55,5 +55,23 @@ public class FiSystemIn implements FiInputStream {
 	public String readLine() {
 		return console.nextLine();
 	}
-	
+
+	/**
+	 * Wrapper for System.out.print()
+	 */
+	@Override
+	public void print(String s) {
+		System.out.print(s);
+
+	}
+
+	/**
+	 * Wrapper for System.out.println()
+	 */
+	@Override
+	public void println(String s) {
+		System.out.println(s);
+
+	}
+
 }
