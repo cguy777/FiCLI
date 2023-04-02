@@ -29,14 +29,13 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package fiberous.fi;
+package fibrous.fi;
 
 /**
- * Implement an object using this interface so the {@link FiCLI} can directly write to your preferred output.
+ * Implement an object using this interface so the {@link FiCLI} can receive input.
  * @author noahm
  *
  */
-public interface FiOutputStream {
-	public void print(String s);
-	public void println(String s);
+public interface FiInputStream {
+	public String readLine();
 }

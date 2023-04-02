@@ -1,3 +1,3 @@
 module FiCLI {
-	exports fiberous.fi;
+	exports fibrous.fi;
 }

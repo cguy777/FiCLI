@@ -29,47 +29,14 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package fiberous.fi;
-
-import java.util.Scanner;
+package fibrous.fi;
 
 /**
- * A wrapper class for System.in using a {@link Scanner} and System.out.
- * Implements {@link FiInputStream} and {@link FiOutputStream}.
- * This is the default IO stream system.
+ * Implement an object using this interface so the {@link FiCLI} can directly write to your preferred output.
  * @author noahm
  *
  */
-public class FiConsoleIO implements FiInputStream, FiOutputStream {
-	
-	Scanner console;
-	
-	public FiConsoleIO() {
-		console = new Scanner(System.in);
-	}
-	
-	/**
-	 * Just reads a line from the console
-	 */
-	@Override
-	public String readLine() {
-		return console.nextLine();
-	}
-
-	/**
-	 * Wrapper for System.out.print()
-	 */
-	@Override
-	public void print(String s) {
-		System.out.print(s);
-	}
-
-	/**
-	 * Wrapper for System.out.println()
-	 */
-	@Override
-	public void println(String s) {
-		System.out.println(s);
-	}
-
+public interface FiOutputStream {
+	public void print(String s);
+	public void println(String s);
 }

@@ -29,36 +29,47 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package fiberous.example;
+package fibrous.fi;
 
-import fiberous.fi.FiCommand;
+import java.util.Scanner;
 
 /**
- * This command just adds two arguments together.
+ * A wrapper class for System.in using a {@link Scanner} and System.out.
+ * Implements {@link FiInputStream} and {@link FiOutputStream}.
+ * This is the default IO stream system.
  * @author noahm
  *
  */
-public class AddCommand extends FiCommand {
-
-	public AddCommand(String commandString) {
-		super(commandString);
-		
-		commandDescription = "Usage example: add 5 9";
+public class FiConsoleIO implements FiInputStream, FiOutputStream {
+	
+	Scanner console;
+	
+	public FiConsoleIO() {
+		console = new Scanner(System.in);
+	}
+	
+	/**
+	 * Just reads a line from the console
+	 */
+	@Override
+	public String readLine() {
+		return console.nextLine();
 	}
 
+	/**
+	 * Wrapper for System.out.print()
+	 */
 	@Override
-	public void execute() {
-		
-		try {
-			int a = Integer.parseInt(arguments.get(0));
-			int b = Integer.parseInt(arguments.get(1));
-		
-			int sum = a + b;
-		
-			System.out.println(a + " + " + b + " = " + sum);
-		} catch(Exception e) {
-			System.out.println("Error while perfoming an addition operation!!!");
-		}
+	public void print(String s) {
+		System.out.print(s);
+	}
+
+	/**
+	 * Wrapper for System.out.println()
+	 */
+	@Override
+	public void println(String s) {
+		System.out.println(s);
 	}
 
 }

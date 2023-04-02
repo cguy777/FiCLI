@@ -29,21 +29,36 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package fiberous.example;
+package fibrous.example;
 
-import fiberous.fi.FiCommand;
+import fibrous.fi.FiCommand;
 
-public class HiddenCommand extends FiCommand {
+/**
+ * This command just adds two arguments together.
+ * @author noahm
+ *
+ */
+public class AddCommand extends FiCommand {
 
-	public HiddenCommand(String commandString) {
+	public AddCommand(String commandString) {
 		super(commandString);
-		isVisible = false;
+		
+		commandDescription = "Usage example: add 5 9";
 	}
 
 	@Override
 	public void execute() {
-		System.out.println("This is a hidden command.");
-		System.out.println("Use this functionality if you don't want a command listed for some reason.");
+		
+		try {
+			int a = Integer.parseInt(arguments.get(0));
+			int b = Integer.parseInt(arguments.get(1));
+		
+			int sum = a + b;
+		
+			System.out.println(a + " + " + b + " = " + sum);
+		} catch(Exception e) {
+			System.out.println("Error while perfoming an addition operation!!!");
+		}
 	}
 
 }

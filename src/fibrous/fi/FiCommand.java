@@ -29,7 +29,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package fiberous.fi;
+package fibrous.fi;
 
 import java.util.ArrayList;
 import java.util.Scanner;

@@ -29,10 +29,10 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package fiberous.example;
+package fibrous.example;
 
-import fiberous.fi.FiCLI;
-import fiberous.fi.FiState;
+import fibrous.fi.FiCLI;
+import fibrous.fi.FiState;
 
 /*
  * Quick example of how this works...
