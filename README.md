@@ -1,4 +1,4 @@
 # FiCLI
 
-FiCLI is an integrated Java Command Line Interface and Command Processor for console/terminal based applications.
+FiCLI is an integrated Java Command Line Interface and Command Processor library.
 It uses the 3-clause BSD license.
