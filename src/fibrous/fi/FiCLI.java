@@ -269,6 +269,10 @@ public class FiCLI {
 		return commands.size();
 	}
 	
+	public String getListCommandsString() {
+		return listCommandsString;
+	}
+	
 	
 	/**
 	 * Lists all configured commands, plus additional, special commands, if allowed.
