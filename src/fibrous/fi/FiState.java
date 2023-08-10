@@ -40,21 +40,45 @@ package fibrous.fi;
  */
 
 public class FiState {
+	/**
+	 * This indicates that a valid command was recognized and executed.
+	 * This does not take into consideration proper syntax for arguments within the command.
+	 */
 	public final static int VALID = 0;
+	
+	/**
+	 * This indicates that an unrecognized command was input and no action was performed.
+	 */
 	public final static int INVALID = 1;
+	
+	/**
+	 * This indicates that the String configured for exiting was input.
+	 * No action is taken at this time, and it is up to the programmer to define the exit behavior.
+	 */
 	public final static int EXIT = 2;
+	
+	/**
+	 * This indicates that the String configured for "back" was input.
+	 * No action is taken at this time, and it is up to the programmer to define this "back" behavior.
+	 */
 	public final static int BACK = 3;
 	
 	/**
 	 * The state returned from the system based off of the command that was received.
 	 */
 	public int state;
+	
 	/**
 	 * The input that was passed as a command.
 	 */
 	public String input;
 	
-	public FiState(int state, String input) {
+	/**
+	 * Only supposed to be instantiated by an FiCLI object when a command is parsed.
+	 * @param state
+	 * @param input
+	 */
+	protected FiState(int state, String input) {
 		this.state = state;
 		this.input = input;
 	}

@@ -65,6 +65,7 @@ public class FiCLI {
 
 	/**
 	 * Creates a new InputParser with a configurable {@link FiOutputStream} and {@link FiInputStream}.
+	 * @param is The {@link FiInputStream} object that this parser will use to directly read input data.
 	 * @param os The {@link FiOutputStream} object that this parser will use to directly output data.
 	 * @param listCommandsString What input string should show all of the commands that have been configured.
 	 */
@@ -101,7 +102,7 @@ public class FiCLI {
 	
 	/**
 	 * Adds a command that will be executed when input matches it's defined syntax.
-	 * @param command
+	 * @param command An FiCommand to be added.
 	 */
 	public void addCommand(FiCommand command) {
 		sortAndAddCommand(command);
@@ -109,15 +110,15 @@ public class FiCLI {
 	
 	/**
 	 * Sets the list of commands through an {@linkplain ArrayList} containing {@link FiCommand} objects.
-	 * @param commands
+	 * @param commands An ArrayList containing FiCommand objects
 	 */
 	public void setCommands(ArrayList<FiCommand> commands) {
 		this.commands = commands;
 	}
 	
 	/**
-	 * Returns an ArrayList containing all of the currently configured commands.
-	 * @return
+	 * Returns an ArrayList containing all of the currently configured {@link FiCommand} objects.
+	 * @return An ArrayList containing all of the currently configured FiCommand objects.
 	 */
 	public ArrayList<FiCommand> getCommands() {
 		return commands;
@@ -213,7 +214,7 @@ public class FiCLI {
 	}
 	
 	/**
-	 * Sets the input system.
+	 * Sets the {@link FiInputStream} that this FiCLI will use for input.
 	 * @param fis
 	 */
 	public void setInput(FiInputStream fis) {
@@ -221,7 +222,7 @@ public class FiCLI {
 	}
 	
 	/**
-	 * Sets the output system.
+	 * Sets the {@link FiOutputStream} that this FiCLI will use for output.
 	 * @param fos
 	 */
 	public void setOutput(FiOutputStream fos) {
@@ -233,7 +234,7 @@ public class FiCLI {
 	 * Checks a string that is passed and attempts to match it against a stored command or other special command.
 	 * If the string is a valid command, it executes the command, and returns true.
 	 * If not, nothing happens and it returns false, which allows you to create your own error handling.
-	 * @return
+	 * @return An {@link FiState} object representing what happened with regards to the command that was input.
 	 */
 	public FiState processCommand() {
 		
@@ -270,12 +271,14 @@ public class FiCLI {
 	
 	/**
 	 * Returns the number of currently configured commands.
-	 * @return
 	 */
 	public int numOfCommands() {
 		return commands.size();
 	}
 	
+	/**
+	 * Returns the currently configured String/command that will display all currently configured commands.
+	 */
 	public String getListCommandsString() {
 		return listCommandsString;
 	}

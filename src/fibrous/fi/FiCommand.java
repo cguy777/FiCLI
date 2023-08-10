@@ -46,6 +46,9 @@ import java.util.Scanner;
  */
 public abstract class FiCommand {
 	
+	/**
+	 * This is the String that will launch this command.
+	 */
 	public String commandString;
 	
 	/**

@@ -32,10 +32,13 @@
 package fibrous.fi;
 
 /**
- * Implement an object using this interface so the {@link FiCLI} can receive input.
+ * Implement an object using this interface so the {@link FiCLI} can receive input from anywhere you choose.
  * @author noahm
  *
  */
 public interface FiInputStream {
+	/**
+	 * Must return a line containing a command.
+	 */
 	public String readLine();
 }

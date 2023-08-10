@@ -37,6 +37,14 @@ package fibrous.fi;
  *
  */
 public interface FiOutputStream {
+	/**
+	 * This must write a line WITHOUT ENDING in a newline.
+	 * @param s A String you wish to write/print.
+	 */
 	public void print(String s);
+	/**
+	 * This must write a line ENDING in a newline.
+	 * @param s A line you wish to write/print.
+	 */
 	public void println(String s);
 }
