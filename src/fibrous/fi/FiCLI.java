@@ -206,7 +206,7 @@ public class FiCLI {
 	}
 	
 	/**
-	 * Manually prints the caret.
+	 * Manually prints the caret to the configured OutputStream.
 	 */
 	public void printCaret() {
 		oStream.print(caret);
