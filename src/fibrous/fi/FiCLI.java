@@ -206,6 +206,13 @@ public class FiCLI {
 	}
 	
 	/**
+	 * Manually prints the caret.
+	 */
+	public void printCaret() {
+		oStream.print(caret);
+	}
+	
+	/**
 	 * Sets the input system.
 	 * @param fis
 	 */
