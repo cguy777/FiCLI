@@ -283,6 +283,21 @@ public class FiCLI {
 		return listCommandsString;
 	}
 	
+	/**
+	 * Returns the currently configured {@link FiInputStream}.
+	 * @return
+	 */
+	public FiInputStream getInputStream() {
+		return iStream;
+	}
+	
+	/**
+	 * Returns the currently configured {@link FiOutputStream}.
+	 * @return
+	 */
+	public FiOutputStream getOutputStream() {
+		return oStream;
+	}
 	
 	/**
 	 * Lists all configured commands, plus additional, special commands, if allowed.
