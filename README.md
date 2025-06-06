@@ -2,6 +2,7 @@
 
 FiCLI is a simple and lightweight java command parser for use in creating CLIs.
 This library's intent is to help create a straight-forward CLI quickly for a variety of applications.
+It is distributed under the 3-clause BSD license.
 Simply download the latest release or clone the repository and get to work!
 
 ## Getting Started
