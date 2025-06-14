@@ -29,9 +29,9 @@ The FiCLI class is what processes and executes commands.
 
 
 We need to create some commands for our app.
-The first one will simply be to print an about message.
+The first one will simply print an about message.
 First, let's create a new class at the bottom of our ExampleApp.java file, extending the class FiCommand.
-At a minimum, you must declare a super constructor and implement the execute method.
+At a minimum, you must call the super's constructor and implement the execute method.
 The AboutCommand class should look like this.
 
     class AboutCommand extends FiCommand {
